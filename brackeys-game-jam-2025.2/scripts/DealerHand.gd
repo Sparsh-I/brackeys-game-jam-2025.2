@@ -7,18 +7,18 @@ func add_card_to_hand(card_data, pos):
 		print("Dealer stands!")
 		return null
 	
-	if card_count <= 3:
+	if hand.size() <= 3:
 		var card = preload("res://scenes/card.tscn").instantiate()
-		card.call_deferred("set_card", card_data["suit"], card_data["value"], card_count >= 1)
+		card.set_card(card_data["suit"], card_data["value"], hand.size() >= 1)
 		
-		hand_value += get_value(card_data["value"])
+		hand.append(card)	
+		hand_value = calculate_hand_value()
+		arrange_cards(hand, center.x, 150)
+		
 		print("Dealer: %s" % hand_value)
 		if hand_value >= STAND_VALUE:
+			if hand_value > 21:
+				bust = true
 			print("Dealer stands!")
 		
-		card.position = Vector2(pos.x + card_count * 50, pos.y)
-		card_count += 1
-		hand.append(card)
-		arrange_cards(hand, center.x, 150)
-
 		return card

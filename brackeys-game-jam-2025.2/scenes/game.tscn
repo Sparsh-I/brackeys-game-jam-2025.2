@@ -26,18 +26,18 @@ script = ExtResource("6_u5sy4")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Hit" type="Button" parent="UI"]
-offset_left = 992.0
-offset_top = 475.0
-offset_right = 1077.0
-offset_bottom = 522.0
+offset_left = 1001.0
+offset_top = 486.0
+offset_right = 1086.0
+offset_bottom = 533.0
 text = "HIT"
 script = ExtResource("7_u5sy4")
 
 [node name="Stand" type="Button" parent="UI"]
-offset_left = 992.0
-offset_top = 536.0
-offset_right = 1077.0
-offset_bottom = 583.0
+offset_left = 1001.0
+offset_top = 547.0
+offset_right = 1086.0
+offset_bottom = 594.0
 text = "STAND"
 script = ExtResource("7_gee14")
 

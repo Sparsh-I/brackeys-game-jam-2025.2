@@ -23,12 +23,14 @@ func player_hit():
 	card_manager.add_child(card)
 
 func player_stand():
+	while dealer_hand.hand_value < 17:
+		dealer_hit()
+	
 	for card in dealer_hand.hand:
 		if card.face_down:
 			card.flip_over()
 	
-	while dealer_hand.hand_value < 17:
-		dealer_hit()
+	end_round()
 
 func dealer_hit():
 	# deal card for the dealer
@@ -37,6 +39,18 @@ func dealer_hit():
 		return
 	var card = dealer_hand.add_card_to_hand(card_data, DEALER_POS)
 	card_manager.add_child(card)
+
+func end_round():
+	if (player_hand.bust and dealer_hand.bust) or (player_hand.hand_value == dealer_hand.hand_value):
+		print("\n-----------Chips back-----------")
+	elif dealer_hand.bust:
+		print("\n-----------Victory-----------")
+	elif player_hand.bust:
+		print("\n-----------Loss-----------")
+	elif player_hand.hand_value > dealer_hand.hand_value:
+		print("\n-----------Victory-----------")
+	else:
+		print("\n-----------Loss-----------")
 
 func _on_hit_pressed():
 	player_hit()

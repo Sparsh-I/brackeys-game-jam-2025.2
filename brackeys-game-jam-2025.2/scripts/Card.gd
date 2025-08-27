@@ -21,24 +21,24 @@ func set_card(suit_idx: int, val_idx: int, is_face_down: bool):
 	val_name = VALUES[val_idx]
 	self.face_down = is_face_down
 	
-	if face_down:
-		sprite.texture = preload("res://assets/sprites/card_back.png")
-	else:
-		sprite.texture = get_card_texture(suit_name, val_name)
-
+	#if is_node_ready():
+		#sprite.texture = get_card_texture()
 
 # assign the correct sprite to it based on suit and value
-func get_card_texture(suit_name: String, val_name: String) -> Texture:
+func get_card_texture() -> Texture:
 	var path: String
-	if suit_name and val_name:
-		path = "res://assets/sprites/%s/card_%s_%s.png" % [suit_name, suit_name, val_name]	
+	if face_down:
+		path = "res://assets/sprites/card_back.png"
 	else:
-		path = "res://assets/sprites/card_empty.png"
+		if suit_name and val_name:
+			path = "res://assets/sprites/%s/card_%s_%s.png" % [suit_name, suit_name, val_name]	
+		else:
+			path = "res://assets/sprites/card_empty.png"
 	return load(path)
 
 func flip_over():
 	face_down = false
-	sprite.texture = get_card_texture(suit_name, val_name)
+	sprite.texture = get_card_texture()
 
 func scale_card(factor):
 	sprite.scale = Vector2(factor, factor)
@@ -51,7 +51,8 @@ func _ready():
 	#get_parent().connect_card_signals(self)
 
 	scale_card(3)
-
+	sprite.texture = get_card_texture()
+	
 #func _on_area_2d_mouse_entered() -> void:
 	#emit_signal("hovered", self)
 #
