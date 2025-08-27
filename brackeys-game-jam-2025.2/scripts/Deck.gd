@@ -1,6 +1,6 @@
 extends Node2D
 
-var cards: Array = []
+var cards = []
 
 func _ready():
 	for suit in range(0, 4):

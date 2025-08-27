@@ -7,8 +7,7 @@ extends Node2D
 @onready var hit_button = $UI/Hit
 @onready var stand_button = $UI/Stand
 
-var PLAYER_POS: Vector2
-var DEALER_POS: Vector2
+var is_standing = false
 
 func deal():
 	for i in range(2):
@@ -19,7 +18,7 @@ func player_hit():
 	var card_data = deck.pick_card()
 	if card_data.size() == 0:
 		return
-	var card = player_hand.add_card_to_hand(card_data, PLAYER_POS)
+	var card = player_hand.add_card_to_hand(card_data)
 	card_manager.add_child(card)
 
 func player_stand():
@@ -37,10 +36,10 @@ func dealer_hit():
 	var card_data = deck.pick_card()
 	if card_data.size() == 0:
 		return
-	var card = dealer_hand.add_card_to_hand(card_data, DEALER_POS)
+	var card = dealer_hand.add_card_to_hand(card_data)
 	card_manager.add_child(card)
 
-func end_round():
+func end_round():	
 	if (player_hand.bust and dealer_hand.bust) or (player_hand.hand_value == dealer_hand.hand_value):
 		print("\n-----------Chips back-----------")
 	elif dealer_hand.bust:
@@ -53,17 +52,20 @@ func end_round():
 		print("\n-----------Loss-----------")
 
 func _on_hit_pressed():
+	if is_standing: return
 	player_hit()
 	dealer_hit()
 
 func _on_stand_pressed():
+	if is_standing: return
 	player_stand()
 
-func _ready():
-	var screen_size = get_viewport().get_visible_rect().size
-	PLAYER_POS = Vector2(screen_size.x / 2, screen_size.y - 100)
-	DEALER_POS = Vector2(screen_size.x / 2, 100)
-	
+func _ready():	
 	deal()
 	hit_button.pressed.connect(self._on_hit_pressed)
 	stand_button.pressed.connect(self._on_stand_pressed)
+
+func _process(delta: float):
+	player_hand.score.text = "Player: %s" % player_hand.hand_value
+	if !is_standing: dealer_hand.score.text = "Dealer: %s" % dealer_hand.calculate_visible_hand_value()
+	else: dealer_hand.score.text = "Dealer: %s" % dealer_hand.hand_value

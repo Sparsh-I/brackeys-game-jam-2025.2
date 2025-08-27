@@ -1,6 +1,8 @@
 extends "res://scripts/Hand.gd"
 
-func add_card_to_hand(card_data, pos):
+@onready var score = $"../UI/PlayerScore"
+
+func add_card_to_hand(card_data):
 	if hand_value >= 21:
 		print("Bust!")
 		return null
@@ -12,7 +14,6 @@ func add_card_to_hand(card_data, pos):
 	hand_value = calculate_hand_value()
 	arrange_cards(hand, center.x, 450)
 	
-	print("Player: %s" % hand_value)
 	if hand_value > 21:
 		bust = true
 		print("Bust!")

@@ -41,6 +41,18 @@ offset_bottom = 594.0
 text = "STAND"
 script = ExtResource("7_gee14")
 
+[node name="PlayerScore" type="RichTextLabel" parent="UI"]
+offset_left = 90.0
+offset_top = 486.0
+offset_right = 240.0
+offset_bottom = 526.0
+
+[node name="DealerScore" type="RichTextLabel" parent="UI"]
+offset_left = 90.0
+offset_top = 163.0
+offset_right = 240.0
+offset_bottom = 203.0
+
 [connection signal="pressed" from="UI/Hit" to="." method="_on_hit_pressed"]
 [connection signal="pressed" from="UI/Hit" to="UI/Hit" method="_on_pressed"]
 [connection signal="pressed" from="UI/Stand" to="PlayerHand" method="_on_stand_pressed"]

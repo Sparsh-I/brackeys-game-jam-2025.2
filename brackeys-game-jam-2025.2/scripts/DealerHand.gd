@@ -1,8 +1,10 @@
 extends "res://scripts/Hand.gd"
 
-const STAND_VALUE: int = 17
+@onready var score = $"../UI/DealerScore"
 
-func add_card_to_hand(card_data, pos):
+const STAND_VALUE = 17
+
+func add_card_to_hand(card_data):
 	if hand_value >= STAND_VALUE:
 		print("Dealer stands!")
 		return null
@@ -15,10 +17,22 @@ func add_card_to_hand(card_data, pos):
 		hand_value = calculate_hand_value()
 		arrange_cards(hand, center.x, 150)
 		
-		print("Dealer: %s" % hand_value)
+		score.text = "Dealer: %s" % hand_value
 		if hand_value >= STAND_VALUE:
 			if hand_value > 21:
 				bust = true
 			print("Dealer stands!")
 		
 		return card
+
+func calculate_visible_hand_value():
+	var total = 0
+	var value = hand[0].val_name
+	if value == "J" or value == "Q" or value == "K":
+		total = 10;
+	elif value == "A":
+		total = 11
+	else:
+		total = value.to_int()
+	
+	return total

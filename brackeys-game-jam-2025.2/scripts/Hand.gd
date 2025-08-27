@@ -1,10 +1,10 @@
 extends Node
 
-var hand_value: int = 0
-var bust: bool = false
+var hand_value = 0
+var bust = false
 
-var hand: Array = []
-const CARD_SPACING: int = 50
+var hand = []
+const CARD_SPACING = 50
 
 var screen_size: Vector2
 var center: Vector2
