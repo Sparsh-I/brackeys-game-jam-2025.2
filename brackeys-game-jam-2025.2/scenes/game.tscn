@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://sw3jco1ktcgr"]
+[gd_scene load_steps=7 format=3 uid="uid://sw3jco1ktcgr"]
 
 [ext_resource type="Script" uid="uid://b0ykv41mhvrlf" path="res://scripts/Game.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://bpyejp64pl3d4" path="res://scripts/CardManager.gd" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://bfs12xa3a3fq0" path="res://scripts/Deck.gd" id="4_iywne"]
 [ext_resource type="Script" uid="uid://dgw01n4gj8l0g" path="res://scripts/PlayerHand.gd" id="5_p57ef"]
+[ext_resource type="PackedScene" uid="uid://b3r1ut20x166n" path="res://scenes/value_bar.tscn" id="5_u5sy4"]
 [ext_resource type="Script" uid="uid://drugubs3rpa4o" path="res://scripts/DealerHand.gd" id="6_u5sy4"]
-[ext_resource type="Script" uid="uid://lgobdho52vnu" path="res://scripts/Stand.gd" id="7_gee14"]
-[ext_resource type="Script" uid="uid://bu66q3kh331j4" path="res://scripts/Hit.gd" id="7_u5sy4"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_uwrxv")
@@ -26,33 +25,65 @@ script = ExtResource("6_u5sy4")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Hit" type="Button" parent="UI"]
-offset_left = 1001.0
-offset_top = 486.0
-offset_right = 1086.0
-offset_bottom = 533.0
+offset_left = 959.0
+offset_top = 438.0
+offset_right = 1108.0
+offset_bottom = 516.0
+theme_override_font_sizes/font_size = 30
 text = "HIT"
-script = ExtResource("7_u5sy4")
 
 [node name="Stand" type="Button" parent="UI"]
-offset_left = 1001.0
-offset_top = 547.0
-offset_right = 1086.0
-offset_bottom = 594.0
+offset_left = 959.0
+offset_top = 528.0
+offset_right = 1108.0
+offset_bottom = 606.0
+theme_override_font_sizes/font_size = 30
 text = "STAND"
-script = ExtResource("7_gee14")
+
+[node name="Reset" type="Button" parent="UI"]
+offset_left = 959.0
+offset_top = 270.0
+offset_right = 1108.0
+offset_bottom = 348.0
+theme_override_font_sizes/font_size = 30
+text = "RESET"
 
 [node name="PlayerScore" type="RichTextLabel" parent="UI"]
 offset_left = 90.0
-offset_top = 486.0
-offset_right = 240.0
-offset_bottom = 526.0
+offset_top = 528.0
+offset_right = 322.0
+offset_bottom = 610.0
+theme_override_font_sizes/normal_font_size = 45
+text = "Player: #"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DealerScore" type="RichTextLabel" parent="UI"]
 offset_left = 90.0
-offset_top = 163.0
-offset_right = 240.0
-offset_bottom = 203.0
+offset_top = 191.0
+offset_right = 322.0
+offset_bottom = 262.0
+theme_override_font_sizes/normal_font_size = 45
+text = "Dealer: #"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoundMessage" type="RichTextLabel" parent="UI"]
+offset_left = 829.0
+offset_top = 48.0
+offset_right = 1110.0
+offset_bottom = 177.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Round End Message"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerBar" parent="." instance=ExtResource("5_u5sy4")]
+position = Vector2(199, 491)
+
+[node name="DealerBar" parent="." instance=ExtResource("5_u5sy4")]
+position = Vector2(199, 161)
 
 [connection signal="pressed" from="UI/Hit" to="." method="_on_hit_pressed"]
-[connection signal="pressed" from="UI/Hit" to="UI/Hit" method="_on_pressed"]
-[connection signal="pressed" from="UI/Stand" to="PlayerHand" method="_on_stand_pressed"]
+[connection signal="pressed" from="UI/Stand" to="." method="_on_stand_pressed"]
+[connection signal="pressed" from="UI/Reset" to="." method="_on_reset_pressed"]

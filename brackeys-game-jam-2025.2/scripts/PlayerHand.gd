@@ -19,6 +19,3 @@ func add_card_to_hand(card_data):
 		print("Bust!")
 	
 	return card
-
-func _on_stand_pressed() -> void:
-	pass # Replace with function body.

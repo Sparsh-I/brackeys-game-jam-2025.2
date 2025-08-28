@@ -1,8 +1,6 @@
 extends Node2D
 
 @onready var sprite = $Sprite2D
-@onready var area = $Area2D
-@onready var collision = $Area2D/CollisionShape2D
 
 const SCALE = 5
 
@@ -41,8 +39,6 @@ func flip_over():
 
 func scale_card(factor):
 	sprite.scale = Vector2(factor, factor)
-	var shape = collision.shape
-	shape.extents *= factor
 
 func _ready():
 	scale_card(SCALE)

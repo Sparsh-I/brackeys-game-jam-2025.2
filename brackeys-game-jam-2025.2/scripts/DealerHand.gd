@@ -27,6 +27,8 @@ func add_card_to_hand(card_data):
 
 func calculate_visible_hand_value():
 	var total = 0
+	if hand.size() == 0: return total
+	
 	var value = hand[0].val_name
 	if value == "J" or value == "Q" or value == "K":
 		total = 10;
