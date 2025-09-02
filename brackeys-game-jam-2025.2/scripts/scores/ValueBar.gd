@@ -9,11 +9,9 @@ func _ready():
 	for i in range(0, 23):
 		var path = "res://assets/sprites/value_bar/%s_value_bar.png" % i
 		textures.append(load(path))
-	scale_bar(SCALE)
+	SpriteManager.scale_sprite(sprite, SCALE)
 
-func scale_bar(factor: int):
-	sprite.scale = Vector2(factor, factor)
-
+# set the bar texture based on the value of the hand
 func set_bar_texture(value: int):
 	var path: String
 	if value > 21:

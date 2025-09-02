@@ -12,6 +12,13 @@ extends Node2D
 @onready var stand_button = $UI/Stand
 @onready var reset_button = $UI/Reset
 
+@onready var biscuit_button = $UI/BiscuitButton
+@onready var cookie_slot = $UI/CookieSlot
+@onready var james_jam_slot = $UI/JamesJamSlot
+@onready var sando_slot = $UI/SandoSlot
+@onready var biscotti_slot = $UI/BiscottiSlot
+@onready var shortbread_slot = $UI/ShortbreadSlot
+
 @onready var round_message = $UI/RoundMessage
 
 var is_standing = false
@@ -19,6 +26,7 @@ var is_standing = false
 func _ready():	
 	reset_game()
 
+# set the texture of the bar based on the value of the respective hand
 func update_bars():
 	player_bar.set_bar_texture(player_hand.hand_value)
 	player_hand.score.text = "Player: %s" % player_hand.hand_value
@@ -29,12 +37,14 @@ func update_bars():
 		dealer_bar.set_bar_texture(dealer_hand.hand_value)
 		dealer_hand.score.text = "Dealer: %s" % dealer_hand.hand_value
 
+# deal two cards to the player and dealer
 func deal():
 	round_message.text = "Round In-Play"
 	for i in range(2):
 		dealer_hit()
 		player_hit()
 
+# add card to the player hand if the deck is not empty and update the bars as needed
 func player_hit():
 	var card_data = deck.pick_card()
 	if card_data.size() == 0:
@@ -56,8 +66,9 @@ func player_stand():
 	update_bars()	
 	end_round()
 
+# add card to the dealer hand if the deck is not empty and update the bars as needed
 func dealer_hit():
-	# deal card for the dealer
+	if deck.is_deck_empty(): return
 	var card_data = deck.pick_card()
 	if card_data.size() == 0:
 		return
@@ -65,6 +76,7 @@ func dealer_hit():
 	card_manager.add_child(card)
 	update_bars()
 
+# display the correct message depending on what the results of the round are and add/subtract/regain chips bet
 func end_round():	
 	if (player_hand.bust and dealer_hand.bust) or (player_hand.hand_value == dealer_hand.hand_value):
 		round_message.text = "Chips back"
@@ -106,3 +118,19 @@ func _on_stand_pressed():
 
 func _on_reset_pressed():
 	reset_game()
+
+func _on_biscuit_button_pressed() -> void:
+	var cookie = preload("res://scenes/biscuits/cookie.tscn").instantiate()
+	BiscuitManager.spawn_biscuit(cookie, cookie_slot, player_hand)
+	
+	var james_jam = preload("res://scenes/biscuits/james_jam.tscn").instantiate()
+	BiscuitManager.spawn_biscuit(james_jam, james_jam_slot, player_hand)
+	
+	var sando = preload("res://scenes/biscuits/sando.tscn").instantiate()
+	BiscuitManager.spawn_biscuit(sando, sando_slot, player_hand)
+
+	var biscotti = preload("res://scenes/biscuits/biscotti.tscn").instantiate()
+	BiscuitManager.spawn_biscuit(biscotti, biscotti_slot, player_hand)
+
+	var shortbread = preload("res://scenes/biscuits/shortbread.tscn").instantiate()
+	BiscuitManager.spawn_biscuit(shortbread, shortbread_slot, player_hand)

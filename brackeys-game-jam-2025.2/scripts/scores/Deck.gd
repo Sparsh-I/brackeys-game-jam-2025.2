@@ -13,10 +13,12 @@ func generate_shuffled_deck():
 	cards.shuffle()
 
 func pick_card() -> Dictionary:
+	if is_deck_empty(): return {}
+	else: return cards.pop_back()
+
+func is_deck_empty():
 	if cards.is_empty():
 		print("Deck is empty!")
-		return {}
-	return cards.pop_back()
 
 func reset():
 	generate_shuffled_deck()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3r1ut20x166n"]
 
-[ext_resource type="Script" uid="uid://bu8xqnqe5cw4e" path="res://scripts/ValueBar.gd" id="1_r68ww"]
+[ext_resource type="Script" uid="uid://bu8xqnqe5cw4e" path="res://scripts/scores/ValueBar.gd" id="1_r68ww"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s7myu"]
 load_path = "res://.godot/imported/00_value_bar.png-1c20aed00d7d79f651628a388f600621.ctex"

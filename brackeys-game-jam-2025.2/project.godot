@@ -15,6 +15,11 @@ run/main_scene="uid://sw3jco1ktcgr"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+BiscuitManager="*res://scripts/managers/BiscuitManager.gd"
+SpriteManager="*res://scripts/managers/SpriteManager.gd"
+
 [display]
 
 window/vsync/vsync_mode=0

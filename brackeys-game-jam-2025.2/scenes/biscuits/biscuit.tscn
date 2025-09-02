@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsfyq0yx6w830"]
+
+[ext_resource type="Script" uid="uid://bs4w4n20dcj3r" path="res://scripts/player_items/Biscuit.gd" id="1_f5day"]
+
+[node name="Biscuit" type="Node2D"]
+script = ExtResource("1_f5day")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqg3edto203vc"]
+
+[ext_resource type="Script" uid="uid://bsdglcwieeoxu" path="res://scripts/biscuits/Cookie.gd" id="1_vyqv4"]
+[ext_resource type="Texture2D" uid="uid://dleu2nnp4k2dy" path="res://assets/sprites/biscuits/sando/sando.png" id="2_b7chr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yys3m"]
+radius = 9.0
+
+[node name="Cookie" type="Node2D"]
+script = ExtResource("1_vyqv4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_b7chr")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_yys3m")
+
+[connection signal="mouse_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_mouse_exited"]

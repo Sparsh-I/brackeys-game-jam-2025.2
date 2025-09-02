@@ -2,11 +2,7 @@ extends Node2D
 
 @onready var sprite = $Sprite2D
 
-const SCALE = 5
-
-# signals for if a card is being hovered over
-#signal hovered
-#signal hovered_off
+const SCALE = 4
 
 # constants for suits and values
 const SUITS = ["hearts", "diamonds", "clubs", "spades"]
@@ -14,6 +10,7 @@ const VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"
 var suit_name: String
 var val_name: String
 var face_down = false
+var active = true
 
 # Set the card to the correct sprite
 func set_card(suit_idx: int, val_idx: int, is_face_down: bool):
@@ -37,18 +34,10 @@ func flip_over():
 	face_down = false
 	sprite.texture = get_card_texture()
 
-func scale_card(factor):
-	sprite.scale = Vector2(factor, factor)
+func deactivate():
+	active = false
+	sprite.modulate = Color(1, 1, 1, 0.5)
 
 func _ready():
-	scale_card(SCALE)
+	SpriteManager.scale_sprite(sprite, SCALE)
 	sprite.texture = get_card_texture()
-	
-	# all cards must be a child of CardManager
-	#get_parent().connect_card_signals(self)
-
-#func _on_area_2d_mouse_entered() -> void:
-	#emit_signal("hovered", self)
-#
-#func _on_area_2d_mouse_exited() -> void:
-	#emit_signal("hovered_off", self)

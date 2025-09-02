@@ -1,4 +1,5 @@
 extends Node
+class_name Hand
 
 @onready var value_bar = $ValueBar
 
@@ -18,14 +19,15 @@ func calculate_hand_value() -> int:
 	var ace_count = 0
 	
 	for card in hand:
-		var value = card.val_name
-		if value == "J" or value == "Q" or value == "K":
-			total += 10;
-		elif value == "A":
-			total += 11
-			ace_count += 1
-		else:
-			total += value.to_int()
+		if card.active:
+			var value = card.val_name
+			if value == "J" or value == "Q" or value == "K":
+				total += 10;
+			elif value == "A":
+				total += 11
+				ace_count += 1
+			else:
+				total += value.to_int()
 	
 	while total > 21 and ace_count > 0:
 		total -= 10
@@ -51,17 +53,14 @@ func arrange_cards(cards: Array, center_x: float, y_val: float, spacing: int = C
 		# calculate card offset from the middle and form the fan pattern
 		var offset = i - mid
 		
-		if count % 2 == 1: 
-			card.rotation_degrees = offset * FAN_ANGLE_STEP
-			card.position.y +=  abs(offset) * FAN_POSITION_STEP
-		else: 
-			card.rotation_degrees = offset * FAN_ANGLE_STEP
-			card.position.y += abs(offset) * FAN_POSITION_STEP
+		card.rotation_degrees = offset * FAN_ANGLE_STEP
+		card.position.y += abs(offset) * FAN_POSITION_STEP
 
 func update_value_bar():
 	value_bar.get_bar_texture()
 
 func _ready():
+	# calculate the screen size and the centre of the screen
 	screen_size = get_viewport().get_visible_rect().size
 	center = screen_size / 2
 	bust = false

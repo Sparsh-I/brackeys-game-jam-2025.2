@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://sw3jco1ktcgr"]
+
+[ext_resource type="Script" uid="uid://b0ykv41mhvrlf" path="res://scripts/managers/GameManager.gd" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://bpyejp64pl3d4" path="res://scripts/managers/CardManager.gd" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://bfs12xa3a3fq0" path="res://scripts/scores/Deck.gd" id="4_iywne"]
+[ext_resource type="Script" uid="uid://dgw01n4gj8l0g" path="res://scripts/scores/PlayerHand.gd" id="5_p57ef"]
+[ext_resource type="PackedScene" uid="uid://b3r1ut20x166n" path="res://scenes/value_bar.tscn" id="5_u5sy4"]
+[ext_resource type="Script" uid="uid://drugubs3rpa4o" path="res://scripts/scores/DealerHand.gd" id="6_u5sy4"]
+[ext_resource type="Script" uid="uid://cdofl2vwa5ues" path="res://scripts/managers/BiscuitManager.gd" id="7_u5sy4"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_uwrxv")
+
+[node name="CardManager" type="Node2D" parent="."]
+script = ExtResource("2_yqjtg")
+
+[node name="Deck" type="Node2D" parent="."]
+script = ExtResource("4_iywne")
+
+[node name="PlayerHand" type="Node2D" parent="."]
+script = ExtResource("5_p57ef")
+
+[node name="PlayerBar" parent="." instance=ExtResource("5_u5sy4")]
+position = Vector2(199, 443)
+
+[node name="DealerHand" type="Node2D" parent="."]
+script = ExtResource("6_u5sy4")
+
+[node name="DealerBar" parent="." instance=ExtResource("5_u5sy4")]
+position = Vector2(199, 161)
+
+[node name="BiscuitManager" type="Node2D" parent="."]
+script = ExtResource("7_u5sy4")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Hit" type="Button" parent="UI"]
+offset_left = 449.0
+offset_top = 580.0
+offset_right = 563.0
+offset_bottom = 630.0
+theme_override_font_sizes/font_size = 22
+text = "HIT"
+
+[node name="Stand" type="Button" parent="UI"]
+offset_left = 579.0
+offset_top = 580.0
+offset_right = 698.0
+offset_bottom = 630.0
+theme_override_font_sizes/font_size = 22
+text = "STAND"
+
+[node name="Reset" type="Button" parent="UI"]
+offset_left = 15.0
+offset_top = 19.0
+offset_right = 115.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 20
+text = "RESET"
+
+[node name="PlayerScore" type="RichTextLabel" parent="UI"]
+visible = false
+offset_left = 90.0
+offset_top = 528.0
+offset_right = 322.0
+offset_bottom = 610.0
+theme_override_font_sizes/normal_font_size = 45
+text = "Player: #"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DealerScore" type="RichTextLabel" parent="UI"]
+visible = false
+offset_left = 90.0
+offset_top = 191.0
+offset_right = 322.0
+offset_bottom = 262.0
+theme_override_font_sizes/normal_font_size = 45
+text = "Dealer: #"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoundMessage" type="RichTextLabel" parent="UI"]
+offset_left = 430.0
+offset_top = 275.0
+offset_right = 711.0
+offset_bottom = 334.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Message"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BiscuitSlot" type="Node2D" parent="UI"]
+position = Vector2(963, 610)
+
+[node name="BiscuitButton" type="Button" parent="UI"]
+offset_left = 1001.0
+offset_top = 19.0
+offset_right = 1130.0
+offset_bottom = 53.0
+text = "Produce Cookie"
+
+[node name="BiscuitDescription" type="RichTextLabel" parent="UI"]
+offset_left = 857.0
+offset_top = 347.0
+offset_right = 1073.0
+offset_bottom = 485.0
+text = "BISCUIT DESCRIPTION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UI/Hit" to="." method="_on_hit_pressed"]
+[connection signal="pressed" from="UI/Stand" to="." method="_on_stand_pressed"]
+[connection signal="pressed" from="UI/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="UI/BiscuitButton" to="." method="_on_biscuit_button_pressed"]
