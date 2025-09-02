@@ -226,9 +226,9 @@ position = Vector2(955, 610)
 z_index = 2
 position = Vector2(995, 610)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="FeltTable" type="Sprite2D" parent="."]
 z_index = -2
-position = Vector2(576.444, 324.75)
+position = Vector2(577.444, 324.75)
 scale = Vector2(14.4111, 14.4111)
 texture = ExtResource("7_gee14")
 
