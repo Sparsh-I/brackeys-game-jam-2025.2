@@ -2,8 +2,10 @@ extends Hand
 
 @onready var score = $"../UI/PlayerScore"
 
+var bust_value = 21
+
 func add_card_to_hand(card_data):
-	if hand_value >= 21:
+	if hand_value >= bust_value:
 		return null
 	
 	var card = preload("res://scenes/card.tscn").instantiate()
@@ -14,7 +16,7 @@ func add_card_to_hand(card_data):
 	hand_value = calculate_hand_value()
 	arrange_cards(hand, center.x, 450)
 	
-	if hand_value > 21:
+	if hand_value > bust_value:
 		bust = true
 	
 	return card

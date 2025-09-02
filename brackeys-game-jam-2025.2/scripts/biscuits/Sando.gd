@@ -2,13 +2,10 @@ extends Biscuit
 
 @onready var sprite = $Sprite2D
 
-var player_hand = null
-const PROB = 0.6
-
 func _ready():
-	description = "Only the first and last cards count towards the score"
+	description = "Sando\n\nOnly the first and last cards count towards the score."
 	sprite.texture = preload("res://assets/sprites/biscuits/sando/sando.png")
-	SpriteManager.scale_sprite(sprite, 10)
+	SpriteManager.scale_sprite(sprite, SCALE)
 
 func apply_powerup():
 	var count = 1

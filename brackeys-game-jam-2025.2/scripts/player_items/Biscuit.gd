@@ -4,7 +4,10 @@ class_name Biscuit
 var manager: BiscuitManager
 var description = ""
 var active = false
+
+var player_hand = null
 var slot: Node = null
+const SCALE = 7
 
 # signals for if a biscuit is being hovered over
 signal hovered
@@ -14,12 +17,13 @@ func set_description(text):
 	description = text
 
 func activate():
-	BiscuitManager.set_active_biscuit(self)
-	active = true
+	#BiscuitManager.set_active_biscuit(self)
+	#active = true
 	if slot:
 		slot.add_child(self)
 		position = Vector2(0, 0)
-	apply_powerup()
+		print("Spawned", self.name, "at slot", slot.name)
+	#apply_powerup()
 
 func deactivate():
 	active = false

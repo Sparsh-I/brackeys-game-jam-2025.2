@@ -2,13 +2,10 @@ extends Biscuit
 
 @onready var sprite = $Sprite2D
 
-var player_hand = null
-const PROB = 0.6
-
 func _ready():
-	description = "Halve the score in your hand."
+	description = "Shortbread\n\nHalve the score in your hand."
 	sprite.texture = preload("res://assets/sprites/biscuits/shortbread/shortbread.png")
-	SpriteManager.scale_sprite(sprite, 10)
+	SpriteManager.scale_sprite(sprite, SCALE)
 
 func apply_powerup():
 	player_hand.hand_value /= 2		

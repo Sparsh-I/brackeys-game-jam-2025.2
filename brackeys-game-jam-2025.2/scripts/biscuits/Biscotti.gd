@@ -2,16 +2,15 @@ extends Biscuit
 
 @onready var sprite = $Sprite2D
 
-var player_hand = null
-const PROB = 0.6
+const INCREMENT = 11
 
 func _ready():
-	description = "Halve the score in your hand."
+	description = "Biscotti\n\nIncrease the bust limit by %s." % INCREMENT
 	sprite.texture = preload("res://assets/sprites/biscuits/biscotti/biscotti.png")
-	SpriteManager.scale_sprite(sprite, 10)
+	SpriteManager.scale_sprite(sprite, SCALE)
 
 func apply_powerup():
-	player_hand.hand_value /= 2		
+	player_hand.bust_value		
 	print("The biscotti has been activated!")
 
 func deactivate_powerup():

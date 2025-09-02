@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3vns7fbhxu27"]
 
-[ext_resource type="Script" uid="uid://bsdglcwieeoxu" path="res://scripts/biscuits/Cookie.gd" id="1_v2myq"]
+[ext_resource type="Script" uid="uid://bxmagipamiary" path="res://scripts/biscuits/Biscotti.gd" id="1_2bqg6"]
 [ext_resource type="Texture2D" uid="uid://da7s0hael2uiu" path="res://assets/sprites/biscuits/biscotti/biscotti.png" id="2_2bqg6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oyov7"]
 radius = 6.0
 height = 24.0
 
-[node name="Cookie" type="Node2D"]
-script = ExtResource("1_v2myq")
+[node name="Biscotti" type="Node2D"]
+script = ExtResource("1_2bqg6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_2bqg6")

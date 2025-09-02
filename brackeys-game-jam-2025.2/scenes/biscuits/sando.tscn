@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqg3edto203vc"]
 
-[ext_resource type="Script" uid="uid://bsdglcwieeoxu" path="res://scripts/biscuits/Cookie.gd" id="1_vyqv4"]
+[ext_resource type="Script" uid="uid://c0kfah1nw6c1b" path="res://scripts/biscuits/Sando.gd" id="1_b7chr"]
 [ext_resource type="Texture2D" uid="uid://dleu2nnp4k2dy" path="res://assets/sprites/biscuits/sando/sando.png" id="2_b7chr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yys3m"]
 radius = 9.0
 
-[node name="Cookie" type="Node2D"]
-script = ExtResource("1_vyqv4")
+[node name="Sando" type="Node2D"]
+script = ExtResource("1_b7chr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_b7chr")

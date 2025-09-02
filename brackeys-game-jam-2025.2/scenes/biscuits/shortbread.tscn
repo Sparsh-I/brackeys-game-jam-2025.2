@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://gitfhgo82wek"]
 
-[ext_resource type="Script" uid="uid://bsdglcwieeoxu" path="res://scripts/biscuits/Cookie.gd" id="1_3uslr"]
+[ext_resource type="Script" uid="uid://ktku10c15k6p" path="res://scripts/biscuits/Shortbread.gd" id="1_0l1sb"]
 [ext_resource type="Texture2D" uid="uid://bcsdoicxhjt4o" path="res://assets/sprites/biscuits/shortbread/shortbread.png" id="2_0l1sb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0l1sb"]
 height = 28.0
 
-[node name="Cookie" type="Node2D"]
-script = ExtResource("1_3uslr")
+[node name="Shortbread" type="Node2D"]
+script = ExtResource("1_0l1sb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_0l1sb")

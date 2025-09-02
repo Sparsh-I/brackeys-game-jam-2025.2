@@ -2,20 +2,17 @@ extends Biscuit
 
 @onready var sprite = $Sprite2D
 
-var player_hand = null
 const PROB = 0.6
 
 func _ready():
-	description = "Only a random selection of card(s) go towards the hand value."
+	description = "Cookie\n\nOnly a random selection of card(s) currently in hand go towards the hand value."
 	sprite.texture = preload("res://assets/sprites/biscuits/cookie/cookie.png")
-	SpriteManager.scale_sprite(sprite, 10)
+	SpriteManager.scale_sprite(sprite, SCALE)
 
 func apply_powerup():
 	for card in player_hand.hand:
 		if randf() < PROB:
 			card.deactivate()
-		
-	print("The cookie has been activated!")
 
 func deactivate_powerup():
 	print("The cookie has been deactivated!")
