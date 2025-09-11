@@ -7,11 +7,12 @@ var active = false
 
 var player_hand = null
 var slot: Node = null
-const SCALE = 7
+const SCALE = 5
 
 # signals for if a biscuit is being hovered over
 signal hovered
 signal hovered_off
+signal clicked
 
 func set_description(text):
 	description = text

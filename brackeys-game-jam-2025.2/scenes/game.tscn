@@ -199,9 +199,9 @@ text = "Produce Biscuits
 [node name="BiscuitDescription" type="RichTextLabel" parent="UI"]
 z_index = 1
 offset_left = 805.0
-offset_top = 355.0
+offset_top = 262.0
 offset_right = 1021.0
-offset_bottom = 493.0
+offset_bottom = 400.0
 theme_override_font_sizes/normal_font_size = 16
 text = "BISCUIT DESCRIPTION"
 horizontal_alignment = 1
@@ -209,23 +209,25 @@ vertical_alignment = 1
 
 [node name="BiscottiSlot" type="Node2D" parent="UI"]
 z_index = 2
-position = Vector2(781, 610)
+position = Vector2(1130, 543)
+rotation = -1.57079
 
 [node name="CookieSlot" type="Node2D" parent="UI"]
 z_index = 2
-position = Vector2(851, 610)
+position = Vector2(1130, 443)
 
 [node name="JamesJamSlot" type="Node2D" parent="UI"]
 z_index = 2
-position = Vector2(921, 610)
+position = Vector2(1130, 343)
 
 [node name="SandoSlot" type="Node2D" parent="UI"]
 z_index = 2
-position = Vector2(991, 610)
+position = Vector2(1130, 243)
 
 [node name="ShortbreadSlot" type="Node2D" parent="UI"]
 z_index = 2
-position = Vector2(1061, 610)
+position = Vector2(1130, 143)
+rotation = -1.57079
 
 [node name="FeltTable" type="Sprite2D" parent="."]
 z_index = -2

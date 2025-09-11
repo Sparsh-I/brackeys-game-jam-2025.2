@@ -16,6 +16,7 @@ var is_hovering_on_biscuit
 func connect_biscuit_signals(biscuit: Biscuit):
 	biscuit.connect("hovered", Callable(self, "on_hovered_over_biscuit"))
 	biscuit.connect("hovered_off", Callable(self, "on_hovered_off_biscuit"))
+	biscuit.connect("clicked", Callable(self, "on_clicked_biscuit"))
 
 # set the powerup description box to invisible
 func _ready():
@@ -36,10 +37,17 @@ func on_hovered_off_biscuit(biscuit: Biscuit):
 	var new_biscuit_hovered = raycast_check_for_biscuit()
 	if new_biscuit_hovered:
 		new_biscuit_hovered.set_highlighted_texture(true)
+		is_hovering_on_biscuit = true
 	else:
 		is_hovering_on_biscuit = false
 		biscuit.set_highlighted_texture(false)
 
+func on_clicked_biscuit(biscuit: Biscuit):
+	print("Manager saw biscuit click:", biscuit.name)
+	
+	# Apply the effect
+	biscuit.apply_powerup()
+	
 
 func spawn_biscuit(biscuit: Biscuit, slot, player_hand):
 	biscuit.slot = slot
@@ -57,16 +65,13 @@ func raycast_check_for_biscuit():
 	var results = space_state.intersect_point(parameters)
 	
 	if results.size() > 0:
-		return get_biscuit_with_highest_z_value(results)
+		#return get_biscuit_with_highest_z_value(results)
+		var biscuit = get_biscuit_from_collider(results[0].collider)
+		return biscuit
 	return null
 
-func get_biscuit_with_highest_z_value(biscuits):
-	var highest_z_biscuit = biscuits[0].collider.get_parent()
-	var highest_z_index = highest_z_biscuit.z_index
-	
-	for i in range(1, biscuits.size()):
-		var current_biscuit = biscuits[i].collider.get_parent()
-		if current_biscuit.z_index > highest_z_index:
-			highest_z_biscuit = current_biscuit
-			highest_z_index = current_biscuit.z_index
-	return highest_z_biscuit
+func get_biscuit_from_collider(collider: Object) -> Biscuit:
+	var node = collider
+	while node and not (node is Biscuit):
+		node = node.get_parent()
+	return node
